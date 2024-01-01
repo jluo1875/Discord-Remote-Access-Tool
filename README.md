@@ -2,7 +2,7 @@
 
 A remote access tool controlled over Discord updated with over 60 post-exploitation modules.
 
-## Credits
+## Credits:
 This project was originally made by https://github.com/Sp00p64/DiscordRAT. I expanded its modules and improved its code.
 
 Credit goes to him for all the original modules and the ReadME. 
