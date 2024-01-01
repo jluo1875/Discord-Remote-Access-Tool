@@ -16,7 +16,7 @@ Install requirements :
 pip3 install -r requirements.txt
 ```
 If the steps above were successful, you can launch the python file by executing ```python RAT.py```. It will create a new channel and post a message on the server with a generated session number.
-Now your bot should be available to use ! 
+Now your bot should be available to use! 
 
 Requirements:
 Python3, Windows(x64)
