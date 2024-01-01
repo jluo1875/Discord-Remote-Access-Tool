@@ -1,4 +1,4 @@
-# Discord Remote Access Trojan
+# Discord Remote Access Tool
 
 A remote access tool controlled over Discord updated with over 60 post-exploitation modules.
 
