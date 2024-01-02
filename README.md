@@ -2,11 +2,6 @@
 
 A remote access tool controlled over Discord updated with over 60 post-exploitation modules.
 
-## Credits
-This project was originally made by https://github.com/Sp00p64/DiscordRAT. I expanded its modules and improved its code.
-
-Credit goes to him for all the original modules and the ReadME. 
-
 ## Setup
 You will first need to register a bot with the Discord developer portal and then add the bot to the Discord server that you want to use to control the bot (make sure the bot has administrator privileges in the Discord server).
 Once the bot is created copy the token of your bot and paste it at line 20.
