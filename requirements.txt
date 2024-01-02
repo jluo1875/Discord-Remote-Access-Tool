@@ -1,0 +1,13 @@
+opencv_python
+numpy
+requests
+sounddevice
+PyAutoGUI
+mss
+scipy
+pycaw
+pynput
+comtypes
+pywin32
+discord
+pycryptodomex
