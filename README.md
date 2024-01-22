@@ -1,6 +1,6 @@
 # Discord Remote Access Tool
 
-A remote access tool controlled over Discord updated with over 60 post-exploitation modules, allowing you to record the audio and screen while also downloading files off of it!
+A remote access tool controlled over Discord updated with over 60 post-exploitation modules, allowing you to record the audio and screen while also having the ability to download files off of it!
 
 ## Setup
 You will first need to register a bot with the Discord developer portal and then add the bot to the Discord server that you want to use to control the bot (make sure the bot has administrator privileges in the Discord server).
