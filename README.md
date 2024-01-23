@@ -2,6 +2,8 @@
 
 A remote access tool controlled over Discord updated with over 60 post-exploitation modules, allowing you to record the audio and screen while also having the ability to download files off of it!
 
+Big thanks to moom825 (github.com/moom825) for helping me out for this and giving me the baseline code to get started!
+
 ## Setup
 You will first need to register a bot with the Discord developer portal and then add the bot to the Discord server that you want to use to control the bot (make sure the bot has administrator privileges in the Discord server).
 Once the bot is created, copy the token of your bot and paste it at line 20.
